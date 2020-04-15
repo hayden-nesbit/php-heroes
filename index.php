@@ -3,7 +3,11 @@
 require "connection.php";
 require "header.php";
 
-echo "<h1 class='text-center mt-5 mb-4'>Hello Supers!</h1>";
+echo '<div class="jumbotron">
+<h1 class="display-4">Welcome Supers!</h1>
+<p class="lead">Keep tabs on your most trusted allies, your most feared enemies, and update others on your growing powers.</p>
+<hr class="my-4">
+</div>';
 
 $sql = "SELECT * FROM heroes";
 $result = $conn->query($sql);
@@ -15,7 +19,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $hero = "hero.php?id=" . $row["id"];
         $output .=
-            '<div class="col-4">
+            '<div class="col-md-4 col-sm-12">
                 <div class="card mb-3 bg-light" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">' . $row["name"] . '</h5>
