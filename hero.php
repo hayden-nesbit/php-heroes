@@ -25,20 +25,47 @@ if ($result->num_rows > 0) {
 }
 
 
-$sql = "SELECT * FROM relationships WHERE hero1_id = $id OR hero2_id = $id AND type_id = 1";
+$sql = "SELECT * FROM relationships INNER JOIN heroes on relationships.hero2_id=heroes.id WHERE (hero1_id = " . $id . ") AND (type_id = 1);";
 $result = $conn->query($sql);
-
-
 
 if ($result->num_rows > 0) {
     $output = "";
     echo '<div class="container pl-5">';
-    echo "<h4>Friends</h4>";
+    echo "<div class='row'>";
+    echo "<div class='col-4'>";
+    echo "<h5>Friends</h5>";
     while ($row = $result->fetch_assoc()) {
-        $output .= "<p>$row[hero1_id]</p>";
+        $output .= "<li class='pl-3'>$row[name]</li>";
     }
 
     echo $output;
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+} else {
+    echo "0 results";
+}
+
+
+$sql = "SELECT * FROM ability_hero 
+    INNER JOIN abilities on abilities.id=ability_hero.ability_id 
+    INNER JOIN heroes on heroes.id=ability_hero.hero_id 
+    WHERE (ability_hero.hero_id = $id)";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $output = "";
+    echo '<div class="container pl-5 mt-3">';
+    echo "<div class='row'>";
+    echo "<div class='col-4'>";
+    echo "<h5>Super Powers</h5>";
+    while ($row = $result->fetch_assoc()) {
+        $output .= "<li class='pl-3'>$row[ability]</li>";
+    }
+
+    echo $output;
+    echo '</div>';
+    echo '</div>';
     echo '</div>';
 } else {
     echo "0 results";
