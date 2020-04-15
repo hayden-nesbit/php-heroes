@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-</head>
 
+<?php
+require "header.php";
+require "footer.php";
+?>
+
+<header>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <a class="navbar-brand text-white" href="#">SuperBuds</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,9 +30,10 @@
     </form>
   </div>
 </nav>
+</header>
 
 <body>
 
 
-
-
+</body>
+</html>
