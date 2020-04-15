@@ -7,7 +7,7 @@ require "footer.php";
 $id = $_GET["id"];
 
 echo '<div class="jumbotron">
-<img class="border border-dark" src="./img/hero' . $id . '.jpg" />
+<img src="./img/hero' . $id . '.jpg" />
 <p class="lead"></p>
 <hr class="my-2">
 </div>';
