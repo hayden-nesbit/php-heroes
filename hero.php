@@ -72,7 +72,7 @@ function getRelationship($type_id)
         if ($result->num_rows > 0) {
             $output = "";
             while ($row = $result->fetch_assoc()) {
-                $output .= "<li class='pl-3'>$row[name] <a href='data.php?method=addFriend&type_id=2'>Friend Request</a> </li>";
+                $output .= "<li value=" . $row['id'] . "class='pl-3'>" . $row['name'] . "<a href='data.php?method=addFriend&hero=" . $id . "&id=" . $row['rel_id'] . "'>Friend Request</a> </li>";
             }
 
             echo $output;
@@ -97,10 +97,11 @@ function getRelationship($type_id)
             $output = "";
             while ($row = $result->fetch_assoc()) {
                 $pwr = $row["hero_ability_id"];
-                $output .= "<li class='pl-3'>$row[ability] <a href='data.php?method=deleteAbility&id=$pwr'>Delete power</a> </li>";
+                $output .= "<li value=" . $row['id'] . "class='pl-3'>" . $row['ability'] . "<a href='data.php?method=deleteAbility&hero=" . $id . "&id=" . $pwr . "'>Delete power</a> </li>";
             }
             echo $output;
         } else {
+            echo "<p class='pl-5'>No Powers... WEAK SAUCE!!!</p>";
         }
         ?>
     </div>
