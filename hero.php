@@ -4,19 +4,22 @@ require "header.php";
 require "footer.php";
 $id = $_GET["id"];
 
-function getInfo($data, $table, $occasion){
+function getInfo($data, $table, $occasion)
+{
     $sql = "SELECT $data FROM $table WHERE $occasion";
     $result = $GLOBALS["conn"]->query($sql);
     return $result;
 }
 
-function getRelationship($type_id) {
+function getRelationship($type_id)
+{
     $sql = "SELECT * FROM relationships 
             INNER JOIN heroes on relationships.hero2_id=heroes.id 
             WHERE (hero1_id = " . $GLOBALS["id"] . ") AND (type_id = " . $type_id . ")";
     $result = $GLOBALS["conn"]->query($sql);
     return $result;
 }
+
 ?>
 
 <div class="jumbotron">
@@ -40,8 +43,6 @@ function getRelationship($type_id) {
                 "<br";
             }
             echo $output;
-        } else {
-            echo "0 results";
         }
         ?>
     </div>
@@ -49,72 +50,61 @@ function getRelationship($type_id) {
 
     <div class="pl-4">
         <h5>Allies</h5>
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
 
-                <?php
-                $result = getRelationship(1);
-                if ($result->num_rows > 0) {
-                    $output = "";;
-                    while ($row = $result->fetch_assoc()) {
-                        $output .= "<li class='pl-3'>$row[name]</li>";
-                    }
-                    echo $output;
-                } else {
-                    echo "<p class='pl-5'>0 Allies</p>";
-                }
-                ?>
-            </div>
-        </div>
+        <?php
+        $result = getRelationship(1);
+        if ($result->num_rows > 0) {
+            $output = "";;
+            while ($row = $result->fetch_assoc()) {
+                $output .= "<li class='pl-3'>$row[name]</li>";
+            }
+            echo $output;
+        } else {
+            echo "<p class='pl-5'>0 Allies</p>";
+        }
+        ?>
     </div>
 
     <div class="pl-4 mt-3">
         <h5>Enemies</h5>
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <?php
-                $result = getRelationship(2);
-                if ($result->num_rows > 0) {
-                    $output = "";
-                    while ($row = $result->fetch_assoc()) {
-                        $output .= "<li class='pl-3'>$row[name]</li>" . "<button>Send Friend Request</button>";
-                    }
+        <?php
+        $result = getRelationship(2);
+        if ($result->num_rows > 0) {
+            $output = "";
+            while ($row = $result->fetch_assoc()) {
+                $output .= "<li class='pl-3'>$row[name] <a href='data.php?method=addFriend&type_id=2'>Friend Request</a> </li>";
+            }
 
-                    echo $output;
-                } else {
-                    echo "<p class='pl-5'>No Enemies...yet</p>";
-                }
-                ?>
-
-            </div>
-        </div>
+            echo $output;
+            echo "<br>";
+        } else {
+            echo "<p class='pl-5'>No Enemies...yet</p>";
+        }
+        ?>
     </div>
+
 
     <div class="pl-4 mt-3">
         <h5>Super Powers</h5>
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
 
-                <?php
-                $sql = "SELECT * FROM ability_hero
+        <?php
+        $sql = "SELECT * FROM ability_hero
                     INNER JOIN abilities on abilities.id=ability_hero.ability_id
                     INNER JOIN heroes on heroes.id=ability_hero.hero_id
                     WHERE (ability_hero.hero_id = $id)";
-                $result = $GLOBALS["conn"]->query($sql);
-                if ($result->num_rows > 0) {
-                    $output = "";
-                    while ($row = $result->fetch_assoc()) {
-                        $output .= "<li class='pl-3'>$row[ability]</li>";
-                    }
-
-                    echo $output;
-                } else {
-                    echo "0 results";
-                }
-                ?>
-            </div>
-        </div>
+        $result = $GLOBALS["conn"]->query($sql);
+        if ($result->num_rows > 0) {
+            $output = "";
+            while ($row = $result->fetch_assoc()) {
+                $pwr = $row["hero_ability_id"];
+                $output .= "<li class='pl-3'>$row[ability] <a href='data.php?method=deleteAbility&id=$pwr'>Delete power</a> </li>";
+            }
+            echo $output;
+        } else {
+        }
+        ?>
     </div>
+
 </div>
 
 
