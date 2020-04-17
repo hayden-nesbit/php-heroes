@@ -19,8 +19,7 @@ function getRelationship($type_id)
     <?php
     $count = 0;
     echo "<img src='./img/hero" . $id . ".pg.png'/>
-    <hr class='my-1'>
-    <p class='lead'><i class='fas fa-thumbs-up'></i>  " . $count . "</p>"
+    <hr class='my-1'>"
     ?>
 </div>
 

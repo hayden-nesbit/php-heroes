@@ -52,7 +52,7 @@ require "header.php";
                 </div>
             </div>
             <div class="row">
-                <div style="overflow: scroll; max-height: 655px;" class="col-md-9">
+                <div style="overflow: scroll; max-height: 615px;" class="col-md-9">
                     <?php
                     $sql = "SELECT * FROM posts ORDER BY id DESC";
                     $result = $conn->query($sql);
