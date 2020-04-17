@@ -1,7 +1,6 @@
 <?php
 require "connection.php";
 require "header.php";
-require "footer.php";
 ?>
 
 <div class="jumbotron">
@@ -10,35 +9,45 @@ require "footer.php";
     <hr class="my-4">
 </div>
 
-<div class="container pl-5 mb-5">
-    <div id="herocard" class="row">
-        <?php
-        $sql = "SELECT * FROM heroes";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $output = "";
-            while ($row = $result->fetch_assoc()) {
-                $heroImg = $row["id"];
-                $hero = "hero.php?id=" . $row["id"];
-                $output .=
-                    '<div class="col-md-4 col-sm-12">
-                        <div class="card mb-3 bg-light" style="width: 18rem;">
+<div class="container pl-1 mb-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div id="herocard" class="row">
+                <?php
+                $sql = "SELECT * FROM heroes";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $output = "";
+                    while ($row = $result->fetch_assoc()) {
+                        $heroImg = $row["id"];
+                        $hero = "hero.php?id=" . $row["id"];
+                        $output .=
+                            '<div class="card mb-3 bg-light" style="width: 18rem;">
                         <img class="card-img-top" src="./img/hero' . $heroImg . '.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">' . $row["name"] . '</h5>
                                 <p class="card-text">' . $row["about_me"] . '</p>
                                 <a href=' . $hero . ' class="btn btn-primary">About me</a>
-                            </div>
+                          
                         </div>
                     </div>';
-            }
-            echo $output;
-        } else {
-            echo "0 results";
-        }
-        ?>
-
+                    }
+                    echo $output;
+                } else {
+                    echo "0 results";
+                }
+                ?>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="container overflow=hidden">
+                
+            </div>
+        </div>
     </div>
+
+    <!-- --------------------------- FORM SECTION ----------------------------- -->
+
     <hr>
     <div class="form">
         <h1 class="text-center mt-5">Make your account today!</h1>
@@ -72,11 +81,11 @@ require "footer.php";
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-
-
-
 </div>
 
 </body>
+<?php
+require "footer.php";
+?>
 
 </html>

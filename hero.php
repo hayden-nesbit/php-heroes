@@ -1,7 +1,6 @@
 <?php
 require "connection.php";
 require "header.php";
-require "footer.php";
 $id = $_GET["id"];
 
 
@@ -99,19 +98,19 @@ function getRelationship($type_id)
                 ?>
             </div>
         </div>
-        <div class="col-6">
-            <div class="border border-dark">
+        <div class="col-4 offset-2">
+            <div class="border border-dark rounded bg-light p-3">
                 <h5 class="p-2">Pick up powers</h5>
                 <?php
                 $sql = "SELECT * FROM ability_hero
-                        INNER JOIN abilities on abilities.id=ability_hero.ability_id
-                        INNER JOIN heroes on heroes.id=ability_hero.hero_id
-                        WHERE (ability_hero.hero_id <> $id)";
+                INNER JOIN abilities on abilities.id=ability_hero.ability_id
+                INNER JOIN heroes on heroes.id=ability_hero.hero_id
+                WHERE (ability_hero.hero_id <> $id)";
                 $result = $GLOBALS["conn"]->query($sql);
                 if ($result->num_rows > 0) {
                     $output = "";
                     while ($row = $result->fetch_assoc()) {
-                        $pwr = $row["hero_ability_id"];
+                        $pwr = $row["ability_id"];
                         $output .= "<p class='pl-3'>$row[ability] <a style='font-size: 70%' href='data.php?method=getAbility&hero=" . $id . "&id=" . $pwr . "'> Get power</a> </p>";
                     }
                     echo $output;
@@ -122,7 +121,9 @@ function getRelationship($type_id)
     </div>
 </div>
 
-
 <?php
 $conn->close();
+?>
+<?php
+require "footer.php";
 ?>

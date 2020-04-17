@@ -40,7 +40,7 @@ function addFriend($id) {
 }
 
 function getAbility($id, $heroId) {
-    $sql = "INSERT INTO ability_hero (ability_id, hero_id) VALUES ($id, $heroId)";
+    $sql = "INSERT INTO ability_hero (hero_id, ability_id) VALUES ($heroId, $id)";
     $result = $GLOBALS["conn"]->query($sql);
 }
 
