@@ -6,12 +6,12 @@ require "header.php";
 <div class="jumbotron">
     <h1 class="display-4">Welcome Supers!</h1>
     <p class="lead">Keep tabs on your most trusted allies, your most feared enemies, and update others on your growing powers.</p>
-    <hr class="my-4">
+    <hr>
 </div>
 
-<div class="container pl-1 mb-5">
+<div class="container pl-0 pr-0 mb-5">
     <div class="row">
-        <div style="overflow: scroll; max-height: 800px;" class="col-md-3">
+        <div style="overflow: scroll; max-height: 800px;" class="col-md-3 mt-2">
             <div id="herocard" class="row">
                 <?php
                 $sql = "SELECT * FROM heroes";
@@ -45,13 +45,14 @@ require "header.php";
                     <form action="newPost.php" method="post">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary mb-3 float-right">Post</button>
-                            <h2 for="exampleFormControlTextarea1">What's on your mind?</h2>
+                            <h2>What's on your mind?</h2>
                             <textarea class="form-control" name="post" id="post" rows="3"></textarea>
                         </div>
                     </form>
                 </div>
             </div>
-            <div style="overflow: scroll; max-height: 650px;" class="col-md-8">
+            <div clas="row">
+            <div style="overflow: scroll; max-height: 655px;" class="col-md-8">
                 <?php
                 $sql = "SELECT * FROM posts ORDER BY id DESC";
                 $result = $conn->query($sql);
@@ -73,6 +74,10 @@ require "header.php";
                 ?>
             </div>
         </div>
+    </div>
+</div>
+    <div class="col">
+        sponsor
     </div>
 
     <!-- --------------------------- FORM SECTION ----------------------------- -->
