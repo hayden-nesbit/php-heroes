@@ -5,8 +5,8 @@ require "header.php";
 
 <div class="jumbotron">
     <h1 class="display-4">Welcome Supers!</h1>
-    <p class="lead">Keep tabs on your most trusted allies, your most feared enemies, and update others on your growing powers.</p>
-    <hr>
+    <p class="lead mb-0">Keep tabs on your most trusted allies, your most feared enemies, and update others on your growing powers.</p>
+    <hr class="mb-0">
 </div>
 
 <div class="container pl-0 pr-0 mb-5">
@@ -41,43 +41,40 @@ require "header.php";
         </div>
         <div class="col">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <form action="newPost.php" method="post">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary mb-3 float-right">Post</button>
                             <h2>What's on your mind?</h2>
                             <textarea class="form-control" name="post" id="post" rows="3"></textarea>
+                            <button type="submit" class="btn btn-primary mb-3 mt-2 float-right">Post</button>
                         </div>
                     </form>
                 </div>
             </div>
-            <div clas="row">
-            <div style="overflow: scroll; max-height: 655px;" class="col-md-8">
-                <?php
-                $sql = "SELECT * FROM posts ORDER BY id DESC";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    $posts = "";
-                    while ($row = $result->fetch_assoc()) {
-                        $posts .= '<div class="card mb-3">
+            <div class="row">
+                <div style="overflow: scroll; max-height: 655px;" class="col-md-9">
+                    <?php
+                    $sql = "SELECT * FROM posts ORDER BY id DESC";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        $posts = "";
+                        while ($row = $result->fetch_assoc()) {
+                            $posts .= '<div class="card mb-3">
                         <h5 class="card-header bg-white">'
-                            . $row['name'] .
-                            '</h5>
+                                . $row['name'] .
+                                '</h5>
                         <div class="card-body">
                             <p>' . $row['post'] . '</p>
-                            <footer class="text-muted"><i class="far fa-thumbs-up">  Like</i><i class="far fa-comment-alt float-right">  Comment</i></footer>
+                            <footer class="text-muted"><i class="fa fa-thumbs-o-up">  Like</i><i class="fa fa-comment-o float-right">  Comment</i></footer>
                         </div>
                       </div>';
+                        }
+                        echo $posts;
                     }
-                    echo $posts;
-                }
-                ?>
+                    ?>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-    <div class="col">
-        sponsor
     </div>
 
     <!-- --------------------------- FORM SECTION ----------------------------- -->
