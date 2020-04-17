@@ -20,6 +20,10 @@ if($method == "unFriend") {
     unFriend($id);
 }
 
+if($method == "getAbility") {
+    getAbility($id, $heroId);
+}
+
 function unFriend($id) {
     $sql = "UPDATE relationships SET type_id = '2' WHERE rel_id = $id";
     $result = $GLOBALS["conn"]->query($sql);
@@ -32,6 +36,11 @@ function deleteAbility($id) {
 
 function addFriend($id) {
     $sql = "UPDATE relationships SET type_id = '1' WHERE rel_id = $id";
+    $result = $GLOBALS["conn"]->query($sql);
+}
+
+function getAbility($id, $heroId) {
+    $sql = "INSERT INTO ability_hero (ability_id, hero_id) VALUES ($id, $heroId)";
     $result = $GLOBALS["conn"]->query($sql);
 }
 

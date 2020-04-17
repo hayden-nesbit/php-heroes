@@ -49,13 +49,13 @@ require "footer.php";
             </div>
             <div class="ability">
                 <label for="exampleFormControlSelect2">What's your greatest power?</label>
-                <select multiple class="form-control" name="ability" id="ability">
+                <select multiple class="form-control" name="ability[]" id="ability">
                     <?php
                     $sql = "SELECT * FROM abilities";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            echo "<option>$row[ability]</option>";
+                            echo "<option value='$row[id]'>$row[ability]</option>";
                         }
                     }
                     ?>
@@ -72,6 +72,9 @@ require "footer.php";
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+
+
+
 </div>
 
 </body>
