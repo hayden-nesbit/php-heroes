@@ -39,15 +39,19 @@ require "header.php";
                 ?>
             </div>
         </div>
-        <div style="overflow: scroll; max-height: 800px;" class="col-md-8">
-            <form action="newPost.php" method="post">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary mb-3 float-right">Post</button>
-                    <h2 for="exampleFormControlTextarea1">What's on your mind?</h2>
-                    <textarea class="form-control" name="post" id="post" rows="3"></textarea>
+        <div class="col">
+            <div class="row">
+                <div class="col-md-8">
+                    <form action="newPost.php" method="post">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary mb-3 float-right">Post</button>
+                            <h2 for="exampleFormControlTextarea1">What's on your mind?</h2>
+                            <textarea class="form-control" name="post" id="post" rows="3"></textarea>
+                        </div>
+                    </form>
                 </div>
-            </form>
-            <div class="container">
+            </div>
+            <div style="overflow: scroll; max-height: 650px;" class="col-md-8">
                 <?php
                 $sql = "SELECT * FROM posts ORDER BY id DESC";
                 $result = $conn->query($sql);
@@ -56,10 +60,11 @@ require "header.php";
                     while ($row = $result->fetch_assoc()) {
                         $posts .= '<div class="card mb-3">
                         <h5 class="card-header bg-white">'
-                            . $row['name'] . 
-                        '</h5>
+                            . $row['name'] .
+                            '</h5>
                         <div class="card-body">
                             <p>' . $row['post'] . '</p>
+                            <footer class="text-muted"><i class="far fa-thumbs-up">  Like</i><i class="far fa-comment-alt float-right">  Comment</i></footer>
                         </div>
                       </div>';
                     }
