@@ -11,7 +11,7 @@ require "header.php";
 
 <div class="container pl-1 mb-5">
     <div class="row">
-        <div class="col-md-3">
+        <div style="overflow: scroll; max-height: 800px;" class="col-md-3">
             <div id="herocard" class="row">
                 <?php
                 $sql = "SELECT * FROM heroes";
@@ -22,8 +22,8 @@ require "header.php";
                         $heroImg = $row["id"];
                         $hero = "hero.php?id=" . $row["id"];
                         $output .=
-                            '<div class="card mb-3 bg-light" style="width: 18rem;">
-                        <img class="card-img-top" src="./img/hero' . $heroImg . '.jpg" alt="Card image cap">
+                            '<div class="card mb-3 bg-white" style="width: 18rem;">
+                                <img class="card-img-top" src="./img/hero' . $heroImg . '.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">' . $row["name"] . '</h5>
                                 <p class="card-text">' . $row["about_me"] . '</p>
@@ -39,9 +39,33 @@ require "header.php";
                 ?>
             </div>
         </div>
-        <div class="col-md-8">
-            <div class="container overflow=hidden">
-                
+        <div style="overflow: scroll; max-height: 800px;" class="col-md-8">
+            <form action="newPost.php" method="post">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary mb-3 float-right">Post</button>
+                    <h2 for="exampleFormControlTextarea1">What's on your mind?</h2>
+                    <textarea class="form-control" name="post" id="post" rows="3"></textarea>
+                </div>
+            </form>
+            <div class="container">
+                <?php
+                $sql = "SELECT * FROM posts ORDER BY id DESC";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $posts = "";
+                    while ($row = $result->fetch_assoc()) {
+                        $posts .= '<div class="card mb-3">
+                        <h5 class="card-header bg-white">'
+                            . $row['name'] . 
+                        '</h5>
+                        <div class="card-body">
+                            <p>' . $row['post'] . '</p>
+                        </div>
+                      </div>';
+                    }
+                    echo $posts;
+                }
+                ?>
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@
   </div>
 </nav>
 
-<body>
+<body class="bg-light">
 
 
 
