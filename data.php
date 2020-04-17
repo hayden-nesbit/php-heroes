@@ -16,8 +16,12 @@ if($method == "addFriend") {
     addFriend($id);
 }
 
-function deleteFriend($id) {
-    $sql = "DELETE FROM ability_hero WHERE hero_ability_id = $id";
+if($method == "unFriend") {
+    unFriend($id);
+}
+
+function unFriend($id) {
+    $sql = "UPDATE relationships SET type_id = '2' WHERE rel_id = $id";
     $result = $GLOBALS["conn"]->query($sql);
  }
 
