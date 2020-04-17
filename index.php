@@ -65,7 +65,7 @@ require "header.php";
                                 '</h5>
                         <div class="card-body">
                             <p>' . $row['post'] . '</p>
-                            <footer class="text-muted"><i class="fa fa-thumbs-o-up">  Like</i><i class="fa fa-comment-o float-right">  Comment</i></footer>
+                            <footer class="text-muted"><i class="far fa-thumbs-up">  Like</i><i class="far fa-comment-alt float-right">  Comment</i></footer>
                         </div>
                       </div>';
                         }
